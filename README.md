@@ -9,8 +9,8 @@ This mechanism is very powerful when you want to modify/do some actions on an in
 See the interceptors as a middleware between the source of your input object and its final destination.
 
 In this Swift implementation, two more things has been added:
-- Generic input and ouput: in the Okhttp implementation, the interceptor intercepts a **Request** and returns a **Response**.
-- Asynchronous process: the interceptor returns an Observable of `Ouput` object.
+- Generic input.
+- Asynchronous process: the interceptor returns an Observable of `Input` object.
 
 With Interceptors, you have:
 - clean and robust solution to handle:
@@ -62,9 +62,8 @@ To do so, you just have to conform to the protocol Interceptor:
 ```swift
 protocol Interceptor {
     associatedtype Input
-	associatedtype Output
 	
-	func intercept(chain: InterceptorChain<Input, Output>) -> Observable<Output>
+	func intercept(chain: InterceptorChain<Input>) -> Observable<Input>
 }
 ```
 #### Example
@@ -73,70 +72,16 @@ protocol Interceptor {
 
 ```swift
 struct MyInterceptor: Interceptor {
-	func intercept(chain: InterceptorChain<URLRequest, Data>) -> Observable<Data> {
-		// 1) Retrieve the input object (the request)
-		var request = chain.input
+	func intercept(chain: InterceptorChain<URLRequest>) -> Observable<URLRequest> {
+		// 1) Retrieve the input object (the request) and unwarpped the value
+		guard let request = chain.input else {
+			return chain.proceed()
+		}
 
 		// 2) Do things with/on the request
 
-		// 3) Give it back to the chain
-		chain.input = request
-
-		// 4) Continue the chaining to others interceptors.
-		return chain.proceed()
-	}
-}
-```
-
-**Intercept the input and the output**
-
-```swift
-struct MyInterceptor: Interceptor {
-	func intercept(chain: InterceptorChain<URLRequest, Data>) -> Observable<Data> {
-		// 1) Retrieve the input object (the request)
-		var request = chain.input
-
-		// 2) Do things with/on the request
-		
-		// 3) Give it back to the chain
-		chain.input = request
-
-		// 4) Continue the chaining to others interceptors and intercept the output
-		return chain
-			.proceed()
-			.do(onNext: { (data) in
-				// 5) Do things with/on the data object
-			})
-
-		// Note: Use the RX operator you need (map, flatMap, whatever). Obviously, the only condition is to return the same type as the `Output` generic type. Here, it's a Data
-	}
-}
-```
-
-### Chain listener
-
-As this Swift implementation is generic, so, not tighly coupled to a network purpose, it needs a component to do the final job.
-
-```swift
-protocol ChainListener {
-	associatedtype Input
-	associatedtype Output
-
-	func proceedDidFinished(with input: Input) -> Observable<Output>
-}
-```
-
-When the interceptor's chaining has finish to intercept the input object, the Interceptor chain will call the method `proceedDidFinished`.
-It's here where you do the initial job. In a network context, it's where you send the request (input). When you get the response, you do what you need to do, but you must return an Observable of `Output` type. Then the interception of the output (your response) will begin. 
-
-#### Example
-
-```swift
-struct MyChainListener: ChainListener {
-	func proceedDidFinished(with input: URLRequest) -> Observable<Data> {
-		// 1) I use the URLSession+Rx methods like `.data(URLRequest)` or you can create your Observable to do some extra stuff
-	
-		return URLSession.shared.rx.data(request: input)
+		// 3) Continue the chaining with a new value
+		return chain.proceed(object: request)
 	}
 }
 ```
@@ -144,7 +89,7 @@ struct MyChainListener: ChainListener {
 ### Interceptor chain
 --------
 
-When you have your interceptors and the chain listener implemented, it's finished ! 
+When you have your interceptors implemented, it's finished ! 
 
 To launch the process:
 
@@ -152,7 +97,7 @@ To launch the process:
 let disposeBag = DisposeBag()
 
 // 1) I create an instance of interceptor chain. You can add many interceptor you want.
-let chain = InterceptorChain(listener: AnyChainListener(base: MyChainListener()), input: request)
+let chain = InterceptorChain(input: request)
 	.add(interceptor: AnyInterceptor(base: MyInterceptor()))
 
 // 2) Launch the process
@@ -161,7 +106,7 @@ chain
 	.subscribe { (event) in
 		// 3) You get your data in the `.next` case	
 	}
-	.addDisposableTo(disposeBag)
+	.disposed(by: disposeBag)
 }
 ```
 

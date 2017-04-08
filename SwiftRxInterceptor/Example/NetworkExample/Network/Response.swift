@@ -13,11 +13,11 @@ import Foundation
  I just store the final request url to print it at the end and show the work of the interceptors
  */
 struct Response {
-    let requestUrl: String
+    let request: URLRequest
     
     // MARK: Initializer
     
-    init(requestUrl: String) {
-        self.requestUrl = requestUrl
+    init(request: URLRequest) {
+        self.request = request
     }
 }

@@ -7,8 +7,8 @@ target 'SwiftRxInterceptor' do
 
   # Pods for SwiftRxInterceptor
 
-  pod 'RxSwift',    '~> 3.0'
-  pod 'RxCocoa',    '~> 3.0'
+  pod 'RxSwift',    '~> 3.3'
+  pod 'RxCocoa',    '~> 3.3'
 
   target 'SwiftRxInterceptorTests' do
     inherit! :search_paths

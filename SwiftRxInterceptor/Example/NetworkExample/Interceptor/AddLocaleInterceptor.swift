@@ -16,10 +16,14 @@ struct AddLocaleInterceptor: Interceptor {
     
     // MARK: Interceptor
     
-    func intercept(chain: InterceptorChain<URLRequest, Response>) -> Observable<Response> {
-        var request = chain.input
+    func intercept(chain: InterceptorChain<URLRequest>) -> Observable<URLRequest> {
+        guard let request = chain.input else {
+            return chain.proceed()
+        }
+
+        var mutableRequest = request
         
-        guard let url = request.url?.absoluteString else {
+        guard let url = mutableRequest.url?.absoluteString else {
             return chain.proceed()
         }
         
@@ -29,9 +33,8 @@ struct AddLocaleInterceptor: Interceptor {
             return chain.proceed()
         }
         
-        request.url = finalURL
-        chain.input = request
+        mutableRequest.url = finalURL
         
-        return chain.proceed()
+        return chain.proceed(object: mutableRequest)
     }
 }

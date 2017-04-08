@@ -10,96 +10,53 @@
 import XCTest
 import RxSwift
 
-class InterceptorChainTests: XCTestCase {
+final class InterceptorChainTests: XCTestCase {
     private let disposeBag = DisposeBag()
     
-    func test_ChainingIntToInt_ShouldSucceed() -> Void {
-        let expectation = self.expectation(description: "Chaining Int to Int")
-        let chainListener = AnyChainListener(base: ChainIntToIntListener())
+    func test_GivenIntValue_ThenChaining_ShouldSucceed() -> Void {
+        let expectation = self.expectation(description: "Wait for chaining")
         
-        let chain = InterceptorChain(listener: chainListener, input: 1)
-            .add(interceptor: AnyInterceptor(base: AddInterceptor(modifyEndValue: false)))
-            .add(interceptor: AnyInterceptor(base: MinusInterceptor(modifyEndValue: false)))
-            .add(interceptor: AnyInterceptor(base: AddInterceptor(modifyEndValue: false)))
+        let chain = InterceptorChain(input: 1)
+            .add(interceptor: AnyInterceptor(base: AddInterceptor()))
+            .add(interceptor: AnyInterceptor(base: AddInterceptor()))
+            .add(interceptor: AnyInterceptor(base: MinusInterceptor()))
         
-        chain.proceed()
+        chain
+            .proceed()
             .subscribe { (event) in
                 if case .next(let value) = event {
                     expectation.fulfill()
                     XCTAssertTrue(value == 2)
                 }
             }
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
         
-        waitForExpectations(timeout: 3.0) { (error) in
-            print(error)
-        }
+        waitForExpectations(timeout: 3.0)
     }
-    
-    func test_ChainingIntToString_ShouldSucceed() -> Void {
-        let expectation = self.expectation(description: "Chaining Int to String")
-        let chainListener = AnyChainListener(base: ChainIntToStringListener())
-        
-        let chain = InterceptorChain(listener: chainListener, input: 6)
-            .add(interceptor: AnyInterceptor(base: MultiplyBy3Interceptor(modifyEndValue: false)))
-            .add(interceptor: AnyInterceptor(base: DivideBy2Interceptor(modifyEndValue: false)))
-        
-        chain.proceed()
-            .subscribe { (event) in
-                if case .next(let value) = event {
-                    expectation.fulfill()
-                    XCTAssertTrue(value == "result: 9")
-                }
-            }
-            .addDisposableTo(disposeBag)
-        
-        waitForExpectations(timeout: 3.0) { (error) in
-            print(error)
+}
+
+private struct AddInterceptor: Interceptor {
+
+    // MARK: Interceptor
+
+    func intercept(chain: InterceptorChain<Int>) -> Observable<Int> {
+        guard let input = chain.input else {
+            return chain.proceed()
         }
+
+        return chain.proceed(object: input + 1)
     }
-    
-    func test_ChainingIntToInt_AndChainingEndValue_ShouldSucceed() -> Void {
-        let expectation = self.expectation(description: "Chaining Int to Int and chain end value")
-        let chainListener = AnyChainListener(base: ChainIntToIntListener())
-        
-        let chain = InterceptorChain(listener: chainListener, input: 10)
-            .add(interceptor: AnyInterceptor(base: AddInterceptor(modifyEndValue: true)))
-            .add(interceptor: AnyInterceptor(base: MinusInterceptor(modifyEndValue: true)))
-            .add(interceptor: AnyInterceptor(base: MinusInterceptor(modifyEndValue: true)))
-        
-        chain.proceed()
-            .subscribe { (event) in
-                if case .next(let value) = event {
-                    expectation.fulfill()
-                    XCTAssertTrue(value == 8)
-                }
-            }
-            .addDisposableTo(disposeBag)
-        
-        waitForExpectations(timeout: 3.0) { (error) in
-            print(error)
+}
+
+private struct MinusInterceptor: Interceptor {
+
+    // MARK: Interceptor
+
+    func intercept(chain: InterceptorChain<Int>) -> Observable<Int> {
+        guard let input = chain.input else {
+            return chain.proceed()
         }
-    }
-    
-    func test_ChainingIntToString_AndChainingEndValue_ShouldSucceed() -> Void {
-        let expectation = self.expectation(description: "Chaining Int to String and chain end value")
-        let chainListener = AnyChainListener(base: ChainIntToStringListener())
-        
-        let chain = InterceptorChain(listener: chainListener, input: 6)
-            .add(interceptor: AnyInterceptor(base: MultiplyBy3Interceptor(modifyEndValue: true)))
-            .add(interceptor: AnyInterceptor(base: DivideBy2Interceptor(modifyEndValue: true)))
-        
-        chain.proceed()
-            .subscribe { (event) in
-                if case .next(let value) = event {
-                    expectation.fulfill()
-                    XCTAssertTrue(value == "result: 9 divided multiplied")
-                }
-            }
-            .addDisposableTo(disposeBag)
-        
-        waitForExpectations(timeout: 3.0) { (error) in
-            print(error)
-        }
+
+        return chain.proceed(object: input - 1)
     }
 }

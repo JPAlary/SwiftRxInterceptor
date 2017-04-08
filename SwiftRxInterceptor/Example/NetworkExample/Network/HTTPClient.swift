@@ -19,22 +19,37 @@ protocol HTTPClient {
     func send(request: URLRequest) -> Observable<HTTPClientResult>
 }
 
-class MyHTTPClient: HTTPClient {
-    private let requestor: FakeRequestor
+final class MyHTTPClient: HTTPClient {
+    private let requestChain: InterceptorChain<URLRequest>
+    private let responseChain: InterceptorChain<Response>
     
     // MARK: Initializer
+
+    convenience init() {
+        self.init(
+            requestChain: InterceptorChain<URLRequest>()
+                .add(interceptor: AnyInterceptor(base: CredentialsInterceptor()))
+                .add(interceptor: AnyInterceptor(base: AddLocaleInterceptor())),
+            responseChain: InterceptorChain<Response>()
+        )
+    }
     
-    init(requestor: FakeRequestor) {
-        self.requestor = requestor
+    init(requestChain: InterceptorChain<URLRequest>, responseChain: InterceptorChain<Response>) {
+        self.requestChain = requestChain
+        self.responseChain = responseChain
     }
     
     // MARK: HTTPClient
     
     func send(request: URLRequest) -> Observable<HTTPClientResult> {
-        return InterceptorChain(listener: AnyChainListener(base: requestor), input: request)
-            .add(interceptor: AnyInterceptor(base: CredentialsInterceptor()))
-            .add(interceptor: AnyInterceptor(base: AddLocaleInterceptor()))
-            .proceed()
+        return requestChain
+            .proceed(object: request)
+            .map { (request) -> Response in
+                // Here you should sent the request...
+                return Response(request: request)
+            }
+            .withLatestFrom(Observable.just(responseChain)) { $0 }
+            .flatMap { $1.proceed(object: $0) }
             .map { .success($0) }
     }
 }

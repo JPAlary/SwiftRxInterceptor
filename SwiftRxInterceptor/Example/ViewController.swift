@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
     private let disposeBag = DisposeBag()
     
     // MARK: View life cycle
@@ -25,8 +25,7 @@ class ViewController: UIViewController {
     // MARK: Private
     
     private func sendRequest() -> Void {
-        let requestor = FakeRequestor()
-        let httpClient = MyHTTPClient(requestor: requestor)
+        let httpClient = MyHTTPClient()
         let request = URLRequest(url: URL(string: "https://some-api.com")!)
         
         httpClient.send(request: request)
@@ -36,7 +35,7 @@ class ViewController: UIViewController {
                     case .success(let response):
                         // print : https://some-api.com?access_token=some_value&locale=fr_FR
                         
-                        print(response.requestUrl)
+                        print(response.request.url!.absoluteString)
                     case .error(_):
                         // Handle error
                         break
@@ -46,6 +45,6 @@ class ViewController: UIViewController {
                     }
                 }
             }
-            .addDisposableTo(disposeBag)
+            .disposed(by: disposeBag)
     }
 }

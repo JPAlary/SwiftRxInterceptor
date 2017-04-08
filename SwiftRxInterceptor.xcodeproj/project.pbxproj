@@ -11,24 +11,15 @@
 		5942559BD902009B0A50E63D /* Pods_SwiftRxInterceptorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BECE2378C6EAB283CC2E3DC4 /* Pods_SwiftRxInterceptorTests.framework */; };
 		C52CAF561DE98E8600D80C21 /* Interceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52CAF551DE98E8600D80C21 /* Interceptor.swift */; };
 		C52CAF581DE9936900D80C21 /* AnyInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52CAF571DE9936900D80C21 /* AnyInterceptor.swift */; };
-		C52CAF5A1DE9939A00D80C21 /* ChainListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52CAF591DE9939A00D80C21 /* ChainListener.swift */; };
 		C53B01521DECCDDA00DD0DA1 /* InterceptorChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53B01511DECCDDA00DD0DA1 /* InterceptorChain.swift */; };
-		C53B01541DECCE0B00DD0DA1 /* AnyChainListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53B01531DECCE0B00DD0DA1 /* AnyChainListener.swift */; };
 		C53B01561DECD0FD00DD0DA1 /* InterceptorChainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53B01551DECD0FD00DD0DA1 /* InterceptorChainTests.swift */; };
-		C53B01591DECD15000DD0DA1 /* ChainIntToIntListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53B01581DECD15000DD0DA1 /* ChainIntToIntListener.swift */; };
-		C53B015B1DECD19000DD0DA1 /* ChainIntToStringListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53B015A1DECD19000DD0DA1 /* ChainIntToStringListener.swift */; };
-		C53B015E1DECD1E900DD0DA1 /* AddInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53B015D1DECD1E900DD0DA1 /* AddInterceptor.swift */; };
-		C53B01601DECD2D800DD0DA1 /* MinusInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53B015F1DECD2D800DD0DA1 /* MinusInterceptor.swift */; };
-		C53B01621DECD33800DD0DA1 /* MultiplyBy3Interceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53B01611DECD33800DD0DA1 /* MultiplyBy3Interceptor.swift */; };
-		C53B01641DECD3A200DD0DA1 /* DivideBy2Interceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53B01631DECD3A200DD0DA1 /* DivideBy2Interceptor.swift */; };
 		C55FF7471DE8FFCF00181C2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55FF7441DE8FFCF00181C2B /* AppDelegate.swift */; };
-		C59514511DEF664900000FC2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59514501DEF664900000FC2 /* ViewController.swift */; };
 		C59514551DEF66C100000FC2 /* CredentialsInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59514541DEF66C100000FC2 /* CredentialsInterceptor.swift */; };
 		C59514571DEF671800000FC2 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59514561DEF671800000FC2 /* Response.swift */; };
 		C59514591DEF673100000FC2 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59514581DEF673100000FC2 /* HTTPClient.swift */; };
-		C595145B1DEF676600000FC2 /* Requestor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C595145A1DEF676600000FC2 /* Requestor.swift */; };
 		C595145D1DEF67AC00000FC2 /* AddLocaleInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C595145C1DEF67AC00000FC2 /* AddLocaleInterceptor.swift */; };
 		C5FF785C1DE8FF3500699C5D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5FF785A1DE8FF3500699C5D /* LaunchScreen.storyboard */; };
+		E8B8044B1E98FD7B00E8EEB1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B8044A1E98FD7B00E8EEB1 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,28 +40,19 @@
 		BECE2378C6EAB283CC2E3DC4 /* Pods_SwiftRxInterceptorTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftRxInterceptorTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C52CAF551DE98E8600D80C21 /* Interceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interceptor.swift; sourceTree = "<group>"; };
 		C52CAF571DE9936900D80C21 /* AnyInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyInterceptor.swift; sourceTree = "<group>"; };
-		C52CAF591DE9939A00D80C21 /* ChainListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChainListener.swift; sourceTree = "<group>"; };
 		C53B01511DECCDDA00DD0DA1 /* InterceptorChain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterceptorChain.swift; sourceTree = "<group>"; };
-		C53B01531DECCE0B00DD0DA1 /* AnyChainListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyChainListener.swift; sourceTree = "<group>"; };
 		C53B01551DECD0FD00DD0DA1 /* InterceptorChainTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterceptorChainTests.swift; sourceTree = "<group>"; };
-		C53B01581DECD15000DD0DA1 /* ChainIntToIntListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChainIntToIntListener.swift; sourceTree = "<group>"; };
-		C53B015A1DECD19000DD0DA1 /* ChainIntToStringListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChainIntToStringListener.swift; sourceTree = "<group>"; };
-		C53B015D1DECD1E900DD0DA1 /* AddInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddInterceptor.swift; sourceTree = "<group>"; };
-		C53B015F1DECD2D800DD0DA1 /* MinusInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinusInterceptor.swift; sourceTree = "<group>"; };
-		C53B01611DECD33800DD0DA1 /* MultiplyBy3Interceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplyBy3Interceptor.swift; sourceTree = "<group>"; };
-		C53B01631DECD3A200DD0DA1 /* DivideBy2Interceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DivideBy2Interceptor.swift; sourceTree = "<group>"; };
 		C55FF7441DE8FFCF00181C2B /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C59514501DEF664900000FC2 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C59514541DEF66C100000FC2 /* CredentialsInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialsInterceptor.swift; sourceTree = "<group>"; };
 		C59514561DEF671800000FC2 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		C59514581DEF673100000FC2 /* HTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
-		C595145A1DEF676600000FC2 /* Requestor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requestor.swift; sourceTree = "<group>"; };
 		C595145C1DEF67AC00000FC2 /* AddLocaleInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocaleInterceptor.swift; sourceTree = "<group>"; };
 		C5FF784E1DE8FF3500699C5D /* SwiftRxInterceptor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftRxInterceptor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5FF785B1DE8FF3500699C5D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C5FF785D1DE8FF3500699C5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5FF78621DE8FF3500699C5D /* SwiftRxInterceptorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftRxInterceptorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5FF78681DE8FF3500699C5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E8B8044A1E98FD7B00E8EEB1 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EB444A4DA461CA363DA5855A /* Pods-SwiftRxInterceptor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftRxInterceptor.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftRxInterceptor/Pods-SwiftRxInterceptor.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,30 +96,11 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		C53B01571DECD13E00DD0DA1 /* ChainListener */ = {
-			isa = PBXGroup;
-			children = (
-				C53B01581DECD15000DD0DA1 /* ChainIntToIntListener.swift */,
-				C53B015A1DECD19000DD0DA1 /* ChainIntToStringListener.swift */,
-			);
-			path = ChainListener;
-			sourceTree = "<group>";
-		};
-		C53B015C1DECD1E100DD0DA1 /* Interceptor */ = {
-			isa = PBXGroup;
-			children = (
-				C53B015D1DECD1E900DD0DA1 /* AddInterceptor.swift */,
-				C53B015F1DECD2D800DD0DA1 /* MinusInterceptor.swift */,
-				C53B01611DECD33800DD0DA1 /* MultiplyBy3Interceptor.swift */,
-				C53B01631DECD3A200DD0DA1 /* DivideBy2Interceptor.swift */,
-			);
-			path = Interceptor;
-			sourceTree = "<group>";
-		};
 		C55FF7431DE8FFCF00181C2B /* Example */ = {
 			isa = PBXGroup;
 			children = (
 				C55FF7441DE8FFCF00181C2B /* AppDelegate.swift */,
+				E8B8044A1E98FD7B00E8EEB1 /* ViewController.swift */,
 				C595144F1DEF664900000FC2 /* NetworkExample */,
 			);
 			path = Example;
@@ -148,8 +111,6 @@
 			children = (
 				C52CAF551DE98E8600D80C21 /* Interceptor.swift */,
 				C52CAF571DE9936900D80C21 /* AnyInterceptor.swift */,
-				C52CAF591DE9939A00D80C21 /* ChainListener.swift */,
-				C53B01531DECCE0B00DD0DA1 /* AnyChainListener.swift */,
 				C53B01511DECCDDA00DD0DA1 /* InterceptorChain.swift */,
 			);
 			path = Source;
@@ -158,7 +119,6 @@
 		C595144F1DEF664900000FC2 /* NetworkExample */ = {
 			isa = PBXGroup;
 			children = (
-				C59514501DEF664900000FC2 /* ViewController.swift */,
 				C59514521DEF66A900000FC2 /* Interceptor */,
 				C59514531DEF66A900000FC2 /* Network */,
 			);
@@ -179,7 +139,6 @@
 			children = (
 				C59514561DEF671800000FC2 /* Response.swift */,
 				C59514581DEF673100000FC2 /* HTTPClient.swift */,
-				C595145A1DEF676600000FC2 /* Requestor.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -219,8 +178,6 @@
 			isa = PBXGroup;
 			children = (
 				C53B01551DECD0FD00DD0DA1 /* InterceptorChainTests.swift */,
-				C53B015C1DECD1E100DD0DA1 /* Interceptor */,
-				C53B01571DECD13E00DD0DA1 /* ChainListener */,
 				C5FF78681DE8FF3500699C5D /* Info.plist */,
 			);
 			path = SwiftRxInterceptorTests;
@@ -427,17 +384,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C52CAF5A1DE9939A00D80C21 /* ChainListener.swift in Sources */,
 				C595145D1DEF67AC00000FC2 /* AddLocaleInterceptor.swift in Sources */,
-				C53B01541DECCE0B00DD0DA1 /* AnyChainListener.swift in Sources */,
 				C53B01521DECCDDA00DD0DA1 /* InterceptorChain.swift in Sources */,
-				C595145B1DEF676600000FC2 /* Requestor.swift in Sources */,
 				C52CAF561DE98E8600D80C21 /* Interceptor.swift in Sources */,
+				E8B8044B1E98FD7B00E8EEB1 /* ViewController.swift in Sources */,
 				C59514571DEF671800000FC2 /* Response.swift in Sources */,
 				C59514551DEF66C100000FC2 /* CredentialsInterceptor.swift in Sources */,
 				C59514591DEF673100000FC2 /* HTTPClient.swift in Sources */,
 				C52CAF581DE9936900D80C21 /* AnyInterceptor.swift in Sources */,
-				C59514511DEF664900000FC2 /* ViewController.swift in Sources */,
 				C55FF7471DE8FFCF00181C2B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -446,13 +400,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C53B01621DECD33800DD0DA1 /* MultiplyBy3Interceptor.swift in Sources */,
-				C53B015B1DECD19000DD0DA1 /* ChainIntToStringListener.swift in Sources */,
-				C53B01591DECD15000DD0DA1 /* ChainIntToIntListener.swift in Sources */,
-				C53B01601DECD2D800DD0DA1 /* MinusInterceptor.swift in Sources */,
 				C53B01561DECD0FD00DD0DA1 /* InterceptorChainTests.swift in Sources */,
-				C53B015E1DECD1E900DD0DA1 /* AddInterceptor.swift in Sources */,
-				C53B01641DECD3A200DD0DA1 /* DivideBy2Interceptor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

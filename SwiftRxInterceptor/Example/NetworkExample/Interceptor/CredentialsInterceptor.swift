@@ -17,22 +17,26 @@ struct CredentialsInterceptor: Interceptor {
     
     // MARK: Interceptor
     
-    func intercept(chain: InterceptorChain<URLRequest, Response>) -> Observable<Response> {
+    func intercept(chain: InterceptorChain<URLRequest>) -> Observable<URLRequest> {
         
         /* Note:
          The token value can be retrieve from storage or from an api call.
          As the chaining is asynchronous, you can check in this interceptor if you need to:
          - GET a token
          - refresh it
-         and wait a response and `proceed` the chaining.
+         wait for a response and `proceed` the chaining.
          
          In this example, I just add a simple string value but don't hesitate to handle your
          different credentials with an interceptor !
          */
+
+        guard let request = chain.input else {
+            return chain.proceed()
+        }
         
-        var request = chain.input
-        
-        guard let url = request.url?.absoluteString else {
+        var mutableRequest = request
+
+        guard let url = mutableRequest.url?.absoluteString else {
             return chain.proceed()
         }
         
@@ -42,9 +46,8 @@ struct CredentialsInterceptor: Interceptor {
             return chain.proceed()
         }
         
-        request.url = finalURL
-        chain.input = request
+        mutableRequest.url = finalURL
         
-        return chain.proceed()
+        return chain.proceed(object: mutableRequest)
     }
 }

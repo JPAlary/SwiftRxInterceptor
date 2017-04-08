@@ -8,14 +8,13 @@
 
 import RxSwift
 
-/// Be able to intercept an object of type `Input` and `Output`
+/// Be able to intercept an object of type `Input`
 public protocol Interceptor {
     associatedtype Input
-    associatedtype Output
     
-    /// Intercept with an Interceptorchain and respond with an Observable
+    /// Intercept with an InterceptorChain and respond with an Observable
     /// - parameter chain: instance of `InterceptorChain` containing
-    /// the input object. The output object can be also intercept through the `proceed` method, asynchronously.
-    /// - returns: Observable of Output
-    func intercept(chain: InterceptorChain<Input, Output>) -> Observable<Output>
+    /// the input object.
+    /// - returns: Observable of `Input`
+    func intercept(chain: InterceptorChain<Input>) -> Observable<Input>
 }
